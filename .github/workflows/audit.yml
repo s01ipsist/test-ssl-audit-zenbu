@@ -1,0 +1,44 @@
+name: SSL Test and Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run the job once a week (e.g., every Sunday at 12:00 UTC)
+    - cron: '12 0 * * SUN'
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ssl-security:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        uri:
+          - 'https://www.zenbu.org/'
+          - 'https://addressable.dev/'
+          - 'https://addressable.co.nz/'
+          - 'https://addressable.com.au/'
+          - 'https://www.zenbu.co.nz/'
+          - 'https://www.katalystbusiness.co.nz/'
+    steps:
+      - name: Test SSL/TLS for ${{ matrix.uri }}
+        uses: s01ipsist/test-ssl-action@main
+        with:
+          uri: ${{ matrix.uri }}
+
+      - name: Audit SSL Results
+        uses: s01ipsist/test-ssl-auditor-action@main
+        with:
+          results-path: 'testssl_results_*.json'
+          fail-on-violation: 'true'
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ssl-results-${{ strategy.job-index }}
+          path: testssl_results_*.json
