@@ -25,6 +25,7 @@ jobs:
           - 'https://addressable.com.au/'
           - 'https://www.zenbu.co.nz/'
           - 'https://www.katalystbusiness.co.nz/'
+          - 'https://dartsonthego.com/'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
