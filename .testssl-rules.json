@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "minTlsVersion": "1.2",
+    "maxCertificateExpiry": 14,
+    "minGrade": "A"
+  }
+}

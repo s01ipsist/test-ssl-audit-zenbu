@@ -16,6 +16,7 @@ jobs:
   ssl-security:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         uri:
           - 'https://www.zenbu.org/'
@@ -25,6 +26,9 @@ jobs:
           - 'https://www.zenbu.co.nz/'
           - 'https://www.katalystbusiness.co.nz/'
     steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
       - name: Test SSL/TLS for ${{ matrix.uri }}
         uses: s01ipsist/test-ssl-action@main
         with:
@@ -34,6 +38,7 @@ jobs:
         uses: s01ipsist/test-ssl-auditor-action@main
         with:
           results-path: 'testssl_results_*.json'
+          rules-config: '.testssl-rules.json'
           fail-on-violation: 'true'
 
       - name: Upload results
