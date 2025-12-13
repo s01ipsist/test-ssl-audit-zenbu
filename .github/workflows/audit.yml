@@ -13,19 +13,19 @@ on:
       - main
 
 jobs:
-  ssl-security:
+  ssl:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         uri:
-          - 'https://www.zenbu.org/'
-          - 'https://addressable.dev/'
-          - 'https://addressable.co.nz/'
-          - 'https://addressable.com.au/'
-          - 'https://www.zenbu.co.nz/'
-          - 'https://www.katalystbusiness.co.nz/'
-          - 'https://dartsonthego.com/'
+          - 'www.zenbu.org/'
+          - 'addressable.dev/'
+          - 'addressable.co.nz/'
+          - 'addressable.com.au/'
+          - 'www.zenbu.co.nz/'
+          - 'www.katalystbusiness.co.nz/'
+          - 'dartsonthego.com/'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
