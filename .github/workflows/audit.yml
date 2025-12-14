@@ -28,7 +28,7 @@ jobs:
           - 'dartsonthego.com/'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Test SSL/TLS for ${{ matrix.uri }}
         uses: s01ipsist/test-ssl-action@main
