@@ -36,7 +36,7 @@ jobs:
           uri: ${{ matrix.uri }}
 
       - name: Audit SSL Results
-        uses: s01ipsist/test-ssl-auditor-action@main
+        uses: s01ipsist/test-ssl-auditor-action@v1
         with:
           results-path: 'testssl_results_*.json'
           rules-config: '.testssl-rules.json'
